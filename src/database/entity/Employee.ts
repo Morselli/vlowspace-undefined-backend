@@ -1,32 +1,37 @@
 import {
-  Entity,
   Column,
-  PrimaryColumn,
   CreateDateColumn,
-  UpdateDateColumn,
   DeleteDateColumn,
+  JoinColumn,
+  ManyToOne,
+  PrimaryColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import { User } from './User';
 
-@Entity('users')
-class User {
+class Employee {
   @PrimaryColumn()
   id: string;
 
   @Column()
-  name: string;
+  user_id: string;
+
+  @JoinColumn({ name: 'user_id' })
+  @ManyToOne(() => User)
+  userId: User;
 
   @Column()
-  role: string;
+  fullName: string;
 
   @Column()
   email: string;
 
   @Column()
-  password: string;
+  emailCorp: string;
 
   @Column()
-  confirmed: boolean;
+  admissionDate: Date;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
@@ -44,4 +49,4 @@ class User {
   }
 }
 
-export { User };
+export { Employee };
