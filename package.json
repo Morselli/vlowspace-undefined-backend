@@ -25,8 +25,7 @@
    "scripts": {
       "start": "ts-node-dev src/index.ts",
       "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
-      "mg:run": "typeorm migration:run",
-      "mg:revert": "typeorm migration:revert",
-      "mg:create": "typeorm migration:create -n"
+      "build": "tsc",
+      "clear": "rm -rf dist"
    }
 }
