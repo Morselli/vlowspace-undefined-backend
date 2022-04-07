@@ -5,3 +5,5 @@ interface IUserDto {
   password: string;
   confirmed?: boolean;
 }
+
+export { IUserDto };
