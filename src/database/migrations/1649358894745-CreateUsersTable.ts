@@ -30,6 +30,7 @@ export class CreateUsersTable1649358894745 implements MigrationInterface {
             {
                 name: 'confirmed',
                 type: 'boolean',
+                default: false,
             },
             {
                 name: 'created_at',

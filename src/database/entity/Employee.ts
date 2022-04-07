@@ -15,11 +15,11 @@ class Employee {
   id: string;
 
   @Column()
-  user_id: string;
+  userId: string;
 
-  @JoinColumn({ name: 'user_id' })
+  @JoinColumn({ name: 'userId' })
   @ManyToOne(() => User)
-  userId: User;
+  user_id: User;
 
   @Column()
   fullName: string;

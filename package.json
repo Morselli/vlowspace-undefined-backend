@@ -23,6 +23,9 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
-      "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+      "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+      "mg:run": "typeorm migration:run",
+      "mg:revert": "typeorm migration:revert",
+      "mg:create": "typeorm migration:create -n"
    }
 }
