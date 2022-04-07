@@ -1,0 +1,19 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "admin",
+  "database": "workspace-backend",
+  "logging": true,
+  "entities": [
+    "./src/database/entity/*.ts"
+  ],
+  "migrations": [
+    "./src/database/migrations/*.ts"
+  ],
+  "cli": {
+    "entitiesDir": "./src/database/entity",
+    "migrationsDir": "./src/database/migrations"
+  }
+}
