@@ -16,8 +16,20 @@ export class CreateUsersTable1649358894745 implements MigrationInterface {
                 type: 'varchar',
             },
             {
+                name: 'role',
+                type: 'varchar',
+            },
+            {
                 name: 'email',
                 type: 'varchar',
+            },
+            {
+                name: 'password',
+                type: 'varchar',
+            },
+            {
+                name: 'confirmed',
+                type: 'boolean',
             },
             {
                 name: 'created_at',
@@ -28,6 +40,11 @@ export class CreateUsersTable1649358894745 implements MigrationInterface {
                 name: 'updated_at',
                 type: 'timestamp',
                 default: 'now()',
+            },
+            {
+                name: 'deleted_at',
+                type: 'timestamp',
+                isNullable: true
             }
         ]
     }))
@@ -36,5 +53,4 @@ export class CreateUsersTable1649358894745 implements MigrationInterface {
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable('users')
     }
-
 }
