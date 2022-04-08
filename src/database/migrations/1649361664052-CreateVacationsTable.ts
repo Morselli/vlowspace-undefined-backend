@@ -13,7 +13,7 @@ export class CreateVacationsTable1649361664052 implements MigrationInterface {
             generationStrategy: 'uuid',
           },
           {
-            name: 'user_id',
+            name: 'employee_id',
             type: 'varchar',
           },
           {
@@ -23,6 +23,22 @@ export class CreateVacationsTable1649361664052 implements MigrationInterface {
           {
             name: 'date_end',
             type: 'timestamp',
+          },
+          {
+            name: 'owner_approval',
+            type: 'varchar',
+          },
+          {
+            name: 'dp_approval',
+            type: 'varchar',
+          },
+          {
+            name: 'status',
+            type: 'varchar',
+          },
+          {
+            name: 'requested_days',
+            type: 'numeric',
           },
           {
             name: 'created_at',
@@ -42,10 +58,22 @@ export class CreateVacationsTable1649361664052 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: 'FKUserIdCompliments',
-            referencedTableName: 'users',
+            name: 'FKEmployeeIdVacations',
+            referencedTableName: 'employee',
             referencedColumnNames: ['id'],
-            columnNames: ['user_id'],
+            columnNames: ['employee_id'],
+          },
+          {
+            name: 'FKOwnerIdVacations',
+            referencedTableName: 'employee',
+            referencedColumnNames: ['id'],
+            columnNames: ['owner_approval'],
+          },
+          {
+            name: 'FKDpIdVacations',
+            referencedTableName: 'employee',
+            referencedColumnNames: ['id'],
+            columnNames: ['dp_approval'],
           },
         ],
       }),
