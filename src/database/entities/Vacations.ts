@@ -8,6 +8,7 @@ import {
   JoinColumn,
   ManyToOne,
 } from 'typeorm';
+import { v4 as uuid } from 'uuid';
 import { User } from './User';
 
 @Entity('vacations')
@@ -15,10 +16,10 @@ class Vacations {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column()
+  @Column({ name: "user_id" })
   userId: string;
 
-  @JoinColumn({ name: 'userId' })
+  @JoinColumn({ name: 'user_id' })
   @ManyToOne(() => User)
   user_id: User;
 
@@ -36,6 +37,12 @@ class Vacations {
 
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Date;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuid();
+    }
+  }
 }
 
 export { Vacations };
