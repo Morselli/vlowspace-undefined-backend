@@ -10,7 +10,6 @@ class EmployeeController {
     const employeeService = new EmployeeService();
 
     const { admissionDate, emailCorp, email } = request.body;
-    console.log(request.user_id);
 
     try {
       const employee = await employeeService.createEmployee({

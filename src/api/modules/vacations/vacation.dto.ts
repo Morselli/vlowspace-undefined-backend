@@ -1,7 +1,9 @@
 interface VacationDto {
-  userId: string;
+  employeeId: string;
   dateStart: Date;
   dateEnd: Date;
+  ownerId: string;
+  dpId: string;
 }
 
 export { VacationDto };

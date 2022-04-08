@@ -8,17 +8,17 @@ class VacationService {
   async createVacation({
     dateEnd,
     dateStart,
-    userId,
+    employeeId,
   }: VacationDto): Promise<Vacations> {
     const vacationRepository = getCustomRepository(VacationRepository);
     const employeeRepository = getCustomRepository(EmployeeRepository);
 
-    const employee = await employeeRepository.findOne({ userId });
+    const employee = await employeeRepository.findOne({ id: employeeId });
 
     const vacation = vacationRepository.create({
       dateEnd,
       dateStart,
-      userId: employee.userId,
+      employeeId: employee.id,
     });
 
     await vacationRepository.save(vacation);

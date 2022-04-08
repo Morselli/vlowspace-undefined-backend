@@ -6,14 +6,17 @@ class VacationController {
     request: Request,
     response: Response,
   ): Promise<Response> {
-    const { userId, dateStart, dateEnd } = request.body;
+    const { employeeId, dateStart, dateEnd } = request.body;
+    const { ownerId, dpId } = request.params;
 
     const vacationService = new VacationService();
     try {
       const vacation = await vacationService.createVacation({
-        userId,
+        employeeId,
         dateEnd,
         dateStart,
+        ownerId,
+        dpId,
       });
 
       return response.json(vacation);
