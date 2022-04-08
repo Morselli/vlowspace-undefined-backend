@@ -24,6 +24,19 @@ class VacationController {
       return response.json({ error: error.message });
     }
   }
+
+  async listVacations(
+    request: Request,
+    response: Response,
+    ): Promise<Response> {
+    const vacationService = new VacationService();
+    try {
+      const vacations = await vacationService.listVacations();
+      return response.json(vacations);
+    } catch (error) {
+      return response.json({ error: error.message });
+    }
+  }
 }
 
 export { VacationController };

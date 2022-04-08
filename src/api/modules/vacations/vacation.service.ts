@@ -25,6 +25,18 @@ class VacationService {
 
     return vacation;
   }
+
+  async listVacations(): Promise<Vacations[]> {
+    const vacationRepository = getCustomRepository(VacationRepository);
+
+    const vacations = vacationRepository.find({
+      where: {
+        status: 'PENDING',
+      }
+    });
+
+    return vacations;
+  }
 }
 
 export { VacationService };
