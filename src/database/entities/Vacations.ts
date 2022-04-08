@@ -17,7 +17,7 @@ class Vacations {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column({ name: "user_id" })
+  @Column({ name: "user_id"})
   userId: string;
 
   @JoinColumn({ name: 'user_id' })
