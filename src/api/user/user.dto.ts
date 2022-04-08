@@ -6,4 +6,19 @@ interface IUserDto {
   confirmed?: boolean;
 }
 
-export { IUserDto };
+interface IRequest {
+  email: string;
+  password: string;
+}
+
+interface IResponse {
+  user: {
+    email: string;
+    name: string;
+    role: string;
+    id: string;
+  };
+  token: string;
+}
+
+export { IUserDto, IRequest, IResponse };

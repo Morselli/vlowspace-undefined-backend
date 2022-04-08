@@ -26,7 +26,7 @@ class EmployeeService {
       email: user.email,
       emailCorp,
       fullName: user.name,
-      userId: user.id,
+      userId,
       admissionDate,
     });
 
