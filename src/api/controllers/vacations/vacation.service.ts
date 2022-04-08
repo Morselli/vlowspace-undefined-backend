@@ -48,46 +48,43 @@ class VacationService {
     return vacations;
   }
 
-  async approveVacations({
-    id,
-    ownerApproval,
-    dpApproval
-  }: ApproveVacation): Promise<Vacations> {
-    const usersRepository = getCustomRepository(UsersRepositories);
-    const vacationRepository = getCustomRepository(VacationRepository);
-
-    const userRole = await usersRepository.findOne({
-      where: {
-        id
-      },
-      select: ['role']
-    })
-
-    const vacationExist = await vacationRepository.findOne({
-      where: {
-        id
-      }
-    })
-
-    if (userRole.role === 'MANAGER') {
-      const vacation = await vacationRepository.update({
-        id: vacationExist.id
-      }, {
-        ownerApproval
-      })
-
-      return vacation;
-      
-    }
-
-    if (userRole.role === 'DP') {
-      const vacation = vacationRepository.update({id}, {
-        dpApproval
-      })
-
-      
-    }
-  }
+  //async approveVacations({
+  //  id,
+  //  ownerApproval,
+  //  dpApproval
+  //}: ApproveVacation): Promise<Vacations> {
+  //  const usersRepository = getCustomRepository(UsersRepositories);
+  //  const vacationRepository = getCustomRepository(VacationRepository);
+//
+  //  const userRole = await usersRepository.findOne({
+  //    where: {
+  //      id
+  //    },
+  //    select: ['role']
+  //  })
+//
+  //  const vacationExist = await vacationRepository.findOne({
+  //    where: {
+  //      id
+  //    }
+  //  })
+//
+  //  if (userRole.role === 'MANAGER') {
+  //    const vacation = await vacationRepository.update({
+  //      id: vacationExist.id
+  //    }, {
+  //      ownerApproval
+  //    })      
+  //  }
+//
+  //  if (userRole.role === 'DP') {
+  //    const vacation = vacationRepository.update({id}, {
+  //      dpApproval
+  //    })
+//
+  //    
+  //  }
+  //}
 }
 
 export { VacationService };

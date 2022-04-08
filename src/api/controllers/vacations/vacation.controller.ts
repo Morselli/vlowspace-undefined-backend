@@ -57,20 +57,20 @@ class VacationController {
     }
   }
 
-  async approveVacations(
-    request: Request,
-    response: Response,
-  ): Promise<Response> {
-    const vacationService = new VacationService();
-    const { id } = request.user
-    try {
-      const vacation = await vacationService.approveVacations({id});
-
-      return response.json(vacation)
-    } catch (error) {
-      return response.json({ error: error.message });
-    }
-  }
+  //async approveVacations(
+  //  request: Request,
+  //  response: Response,
+  //): Promise<Response> {
+  //  const vacationService = new VacationService();
+  //  const { id } = request.user
+  //  try {
+  //    const vacation = await vacationService.approveVacations({id});
+//
+  //    return response.json(vacation)
+  //  } catch (error) {
+  //    return response.json({ error: error.message });
+  //  }
+  //}
 }
 
 export { VacationController };
