@@ -17,12 +17,12 @@ class Vacations {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column({ name: "employee_id" })
-  employeeId: string;
+  @Column({ name: "user_id" })
+  userId: string;
 
-  @JoinColumn({ name: 'employee_id' })
+  @JoinColumn({ name: 'user_id' })
   @ManyToOne(() => Employee)
-  employee_id: Employee;
+  user: Employee;
 
   @Column({ name: 'date_start' })
   dateStart: Date;

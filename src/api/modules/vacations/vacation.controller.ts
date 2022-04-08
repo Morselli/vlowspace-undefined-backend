@@ -6,17 +6,22 @@ class VacationController {
     request: Request,
     response: Response,
   ): Promise<Response> {
-    const { employeeId, dateStart, dateEnd } = request.body;
-    const { ownerId, dpId } = request.params;
+    const { dateStart, dateEnd } = request.body;
+    const { id } = request.user;
 
     const vacationService = new VacationService();
+    const start = new Date(dateStart);
+    const end = new Date(dateEnd);
+
+    const timeDiff = Math.abs(end.getTime() - start.getTime());
+    const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
     try {
       const vacation = await vacationService.createVacation({
-        employeeId,
+        userId: id,
         dateEnd,
         dateStart,
-        ownerId,
-        dpId,
+        requestedDays: diffDays
       });
 
       return response.json(vacation);
