@@ -9,6 +9,7 @@ import {
   JoinColumn,
   ManyToOne,
 } from 'typeorm';
+import { v4 as uuid } from 'uuid';
 import { User } from './User';
 import { Vacations } from './Vacations';
 
@@ -20,21 +21,21 @@ class VacationsRequests {
   @Column({ name: 'vacation_id' })
   vacationId: string;
 
-  @JoinColumn({ name: 'vacationId' })
+  @JoinColumn({ name: 'vacation_id' })
   @OneToOne(() => Vacations)
   vacation_id: Vacations;
 
   @Column({ name: 'manager_approval' })
   managerApproval: string;
 
-  @JoinColumn()
+  @JoinColumn({ name: 'manager_approval' })
   @ManyToOne(() => User)
   manager_approval: User;
 
   @Column({ name: 'dp_approval' })
   dpApproval: string;
 
-  @JoinColumn()
+  @JoinColumn({ name: 'dp_approval' })
   @ManyToOne(() => User)
   dp_approval: User;
 
@@ -52,6 +53,12 @@ class VacationsRequests {
 
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Date;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuid();
+    }
+  }
 }
 
 export { VacationsRequests };

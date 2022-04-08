@@ -1,37 +1,33 @@
 import {
+  Entity,
+  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  UpdateDateColumn,
   DeleteDateColumn,
   JoinColumn,
   ManyToOne,
-  PrimaryColumn,
-  UpdateDateColumn,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { User } from './User';
 
-class Employee {
-  @PrimaryColumn()
+@Entity('vacations')
+class Vacations {
+  @PrimaryGeneratedColumn()
   id: string;
 
-  @Column()
+  @Column({ name: "user_id" })
   userId: string;
 
-  @JoinColumn({ name: 'userId' })
+  @JoinColumn({ name: 'user_id' })
   @ManyToOne(() => User)
   user_id: User;
 
-  @Column()
-  fullName: string;
+  @Column({ name: 'date_start' })
+  dateStart: Date;
 
-  @Column()
-  email: string;
-
-  @Column()
-  emailCorp: string;
-
-  @Column()
-  admissionDate: Date;
+  @Column({ name: 'date_end' })
+  dateEnd: Date;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
@@ -49,4 +45,4 @@ class Employee {
   }
 }
 
-export { Employee };
+export { Vacations };

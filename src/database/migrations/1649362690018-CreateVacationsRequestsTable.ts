@@ -21,10 +21,12 @@ export class CreateVacationsRequestsTable1649362690018
           {
             name: 'manager_approval',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'dp_approval',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'is_canceled',

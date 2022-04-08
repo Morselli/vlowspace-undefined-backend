@@ -21,6 +21,23 @@ class UserController {
       return response.json({ error: error.message });
     }
   }
+
+  async authUser(request: Request, response: Response): Promise<Response> {
+    const userService = new UserService();
+
+    const { email, password } = request.body;
+
+    try {
+      const token = await userService.authUser({
+        email,
+        password,
+      });
+
+      return response.json(token);
+    } catch (error) {
+      return response.json({ error: error.message });
+    }
+  }
 }
 
 export { UserController };
