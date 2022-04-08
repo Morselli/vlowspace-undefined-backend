@@ -30,14 +30,43 @@ class VacationController {
     }
   }
 
-  async listVacations(
+  async listPendingVacations(
     request: Request,
     response: Response,
     ): Promise<Response> {
     const vacationService = new VacationService();
     try {
-      const vacations = await vacationService.listVacations();
+      const vacations = await vacationService.listPendingVacations();
       return response.json(vacations);
+    } catch (error) {
+      return response.json({ error: error.message });
+    }
+  }
+
+  async listVacations(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const vacationService = new VacationService();
+    try {
+      const vacations = await vacationService.listVacations();
+
+      return response.json(vacations);
+    } catch (error) {
+      return response.json({ error: error.message });
+    }
+  }
+
+  async approveVacations(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const vacationService = new VacationService();
+    const { id } = request.user
+    try {
+      const vacation = await vacationService.approveVacations({id});
+
+      return response.json(vacation)
     } catch (error) {
       return response.json({ error: error.message });
     }

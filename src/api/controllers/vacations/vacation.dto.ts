@@ -8,4 +8,10 @@ interface VacationDto {
   requestedDays?: number;
 }
 
-export { VacationDto };
+interface ApproveVacation {
+  id?: string;
+  ownerApproval?: string;
+  dpApproval?: string;
+}
+
+export { VacationDto, ApproveVacation };

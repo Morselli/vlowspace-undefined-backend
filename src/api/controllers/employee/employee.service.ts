@@ -29,7 +29,7 @@ class EmployeeService {
       fullName: user.name,
       userId: user.id,
       admissionDate,
-      daysOff
+      daysOff: 30
     });
 
     await employeeRepository.save(employee);
