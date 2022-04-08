@@ -27,10 +27,12 @@ export class CreateVacationsTable1649361664052 implements MigrationInterface {
           {
             name: 'owner_approval',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'dp_approval',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'status',
