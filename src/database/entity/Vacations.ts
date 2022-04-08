@@ -1,27 +1,41 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm"
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
+import { User } from './User';
 
 @Entity('vacations')
 class Vacations {
-    @PrimaryGeneratedColumn()
-    id: string
+  @PrimaryGeneratedColumn()
+  id: string;
 
-    @Column('user_id')
-    userId: string
+  @Column()
+  userId: string;
 
-    @Column('vacation_date_start')
-    vacationDateStart: Date
+  @JoinColumn({ name: 'userId' })
+  @ManyToOne(() => User)
+  user_id: User;
 
-    @Column('vacation_date_end')
-    vacationDateEnd: Date
+  @Column({ name: 'date_start' })
+  dateStart: Date;
 
-    @CreateDateColumn('created_at')
-    createdAt: Date
+  @Column({ name: 'date_end' })
+  dateEnd: Date;
 
-    @UpdateDateColumn('updated_at')
-    updatedAt: Date
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
 
-    @DeleteDateColumn('deleted_at')
-    deletedAt: Date
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
+
+  @DeleteDateColumn({ name: 'deleted_at' })
+  deletedAt: Date;
 }
 
-export { Vacations }
+export { Vacations };

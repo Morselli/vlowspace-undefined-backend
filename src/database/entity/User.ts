@@ -25,7 +25,7 @@ class User {
   @Column()
   password: string;
 
-  @Column()
+  @Column({ default: false })
   confirmed: boolean;
 
   @CreateDateColumn({ name: 'created_at' })

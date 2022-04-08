@@ -15,6 +15,7 @@
    "dependencies": {
       "bcryptjs": "^2.4.3",
       "express": "^4.17.3",
+      "express-async-errors": "^3.1.1",
       "jsonwebtoken": "^8.5.1",
       "mysql": "^2.14.1",
       "reflect-metadata": "^0.1.13",
@@ -22,7 +23,9 @@
       "uuid": "^8.3.2"
    },
    "scripts": {
-      "start": "ts-node src/index.ts",
-      "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+      "start": "ts-node-dev src/index.ts",
+      "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+      "build": "tsc",
+      "clear": "rm -rf dist"
    }
 }

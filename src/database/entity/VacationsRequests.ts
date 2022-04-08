@@ -1,33 +1,57 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm"
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
+import { User } from './User';
+import { Vacations } from './Vacations';
 
 @Entity('vacations_requests')
 class VacationsRequests {
-    @PrimaryGeneratedColumn()
-    id: string
+  @PrimaryGeneratedColumn()
+  id: string;
 
-    @Column('vacation_id')
-    vacationId: string
+  @Column({ name: 'vacation_id' })
+  vacationId: string;
 
-    @Column('manager_approval')
-    managerApproval: string
+  @JoinColumn({ name: 'vacationId' })
+  @OneToOne(() => Vacations)
+  vacation_id: Vacations;
 
-    @Column('dp_approval')
-    dpApproval: string
+  @Column({ name: 'manager_approval' })
+  managerApproval: string;
 
-    @Column('is_canceled')
-    isCanceled: boolean
+  @JoinColumn()
+  @ManyToOne(() => User)
+  manager_approval: User;
 
-    @Column()
-    reason: string
+  @Column({ name: 'dp_approval' })
+  dpApproval: string;
 
-    @CreateDateColumn('created_at')
-    createdAt: Date
+  @JoinColumn()
+  @ManyToOne(() => User)
+  dp_approval: User;
 
-    @UpdateDateColumn('updated_at')
-    updatedAt: Date
+  @Column({ name: 'is_canceled' })
+  isCanceled: boolean;
 
-    @DeleteDateColumn('deleted_at')
-    deletedAt: Date
+  @Column()
+  reason?: string;
+
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
+
+  @DeleteDateColumn({ name: 'deleted_at' })
+  deletedAt: Date;
 }
 
-export { VacationsRequests }
+export { VacationsRequests };
