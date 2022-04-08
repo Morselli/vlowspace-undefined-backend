@@ -21,7 +21,7 @@ class Employee {
 
   @JoinColumn({ name: 'user_id' })
   @ManyToOne(() => User)
-  user_id: User;
+  user: User;
 
   @Column({ name: 'full_name' })
   fullName: string;
@@ -52,14 +52,14 @@ class Employee {
 
   @JoinColumn({ name: 'owner_id' })
   @ManyToOne(() => User)
-  owner_id: User
+  owner: User
 
   @Column({ name: 'dp_id' })
   dpId: string
 
   @JoinColumn({ name: 'dp_id' })
   @ManyToOne(() => User)
-  dp_id: string
+  dp: string
 
   constructor() {
     if (!this.id) {

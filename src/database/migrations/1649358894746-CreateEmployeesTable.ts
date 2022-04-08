@@ -19,10 +19,12 @@ export class CreateEmployeesTable1649358894746 implements MigrationInterface {
           {
             name: 'owner_id',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'dp_id',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'full_name',
