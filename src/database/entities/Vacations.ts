@@ -7,6 +7,7 @@ import {
   DeleteDateColumn,
   JoinColumn,
   ManyToOne,
+  AfterUpdate,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { User } from './User';
@@ -60,6 +61,15 @@ class Vacations {
 
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Date;
+
+  @AfterUpdate()
+  udpateStatus() {
+    console.log(this.ownerApproval, this.dpApproval);
+    
+    if (this.ownerApproval && this.dpApproval) {
+      this.status = 'APPROVED';
+    }
+  }
 
   constructor() {
     if (!this.id) {

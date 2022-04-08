@@ -63,8 +63,6 @@ class VacationService {
       where: { id: vacationId },
     });
 
-    console.log(vacationExists);
-
     if (userRole.role === 'MANAGER') {
      await vacationRepository.update(
         {
@@ -83,6 +81,7 @@ class VacationService {
         },
         {
           dpApproval: id,
+          status: 'APPROVED'
         },
       );
     }
