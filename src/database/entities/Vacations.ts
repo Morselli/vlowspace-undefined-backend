@@ -46,6 +46,9 @@ class Vacations {
   @Column()
   status: string;
 
+  @Column()
+  reason: string;
+
   @Column({ name: 'requested_days' })
   requestedDays: number;
 

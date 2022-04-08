@@ -73,6 +73,29 @@ class VacationController {
       return response.json({ error: error.message });
     }
   }
+
+  async repproveVacations(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const vacationService = new VacationService();
+    const { id } = request.user;
+    const { vacationId } = request.params;
+
+    const { reason } = request.body
+
+    try {
+      const vacation = await vacationService.repproveVacations({
+        id,
+        vacationId,
+        reason
+      });
+
+      return response.json(vacation);
+    } catch (error) {
+      return response.json({ error: error.message });
+    }
+  }
 }
 
 export { VacationController };

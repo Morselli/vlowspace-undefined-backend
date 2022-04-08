@@ -13,4 +13,10 @@ interface ApproveVacation {
   id?: string; //userId
 }
 
-export { VacationDto, ApproveVacation };
+interface RepproveVacation {
+  vacationId?: string;
+  id?: string;
+  reason?: string;
+}
+
+export { VacationDto, ApproveVacation, RepproveVacation };
