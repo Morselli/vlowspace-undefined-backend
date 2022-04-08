@@ -10,7 +10,7 @@ const userController = new UserController();
 const employeeController = new EmployeeController();
 const vacationController = new VacationController();
 
-router.post('/login', userController.authUser);
+router.post('/login', userController.login);
 router.post('/createUser', ensureAuth, userController.createUser);
 
 router.post('/createEmployee', employeeController.createEmployee);

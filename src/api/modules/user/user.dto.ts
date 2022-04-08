@@ -19,6 +19,12 @@ interface IResponse {
     id: string;
   };
   token: string;
+  employee: {
+    id: string;
+    emailCorp: string;
+    ownerId: string;
+    dpId: string;
+  };
 }
 
 export { IUserDto, IRequest, IResponse };

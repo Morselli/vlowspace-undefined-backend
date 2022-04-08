@@ -9,13 +9,14 @@ class EmployeeController {
   ): Promise<Response> {
     const employeeService = new EmployeeService();
 
-    const { admissionDate, emailCorp, email } = request.body;
+    const { admissionDate, emailCorp, email, daysOff } = request.body;
 
     try {
       const employee = await employeeService.createEmployee({
         email,
         admissionDate,
         emailCorp,
+        daysOff,
       });
 
       return response.json(employee);

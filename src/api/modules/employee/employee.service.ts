@@ -12,6 +12,7 @@ class EmployeeService {
     emailCorp,
     userId,
     fullName,
+    daysOff
   }: EmployeeDto): Promise<Employee> {
     const employeeRepository = getCustomRepository(EmployeeRepository);
     const usersRepository = getCustomRepository(UsersRepositories);
@@ -26,8 +27,9 @@ class EmployeeService {
       email: user.email,
       emailCorp,
       fullName: user.name,
-      userId,
+      userId: user.id,
       admissionDate,
+      daysOff
     });
 
     await employeeRepository.save(employee);
