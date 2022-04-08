@@ -67,13 +67,13 @@ export class CreateVacationsTable1649361664052 implements MigrationInterface {
           },
           {
             name: 'FKOwnerIdVacations',
-            referencedTableName: 'employee',
+            referencedTableName: 'users',
             referencedColumnNames: ['id'],
             columnNames: ['owner_approval'],
           },
           {
             name: 'FKDpIdVacations',
-            referencedTableName: 'employee',
+            referencedTableName: 'users',
             referencedColumnNames: ['id'],
             columnNames: ['dp_approval'],
           },

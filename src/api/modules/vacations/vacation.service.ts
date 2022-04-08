@@ -11,7 +11,7 @@ class VacationService {
     dateStart,
     userId,
     status,
-    requestedDays
+    requestedDays,
   }: VacationDto): Promise<Vacations> {
     const vacationRepository = getCustomRepository(VacationRepository);
 
@@ -20,7 +20,7 @@ class VacationService {
       dateStart,
       userId,
       status: 'PENDING',
-      requestedDays
+      requestedDays,
     });
 
     await vacationRepository.save(vacation);
@@ -34,7 +34,7 @@ class VacationService {
     const vacations = vacationRepository.find({
       where: {
         status: 'PENDING',
-      }
+      },
     });
 
     return vacations;
@@ -48,43 +48,45 @@ class VacationService {
     return vacations;
   }
 
-  //async approveVacations({
-  //  id,
-  //  ownerApproval,
-  //  dpApproval
-  //}: ApproveVacation): Promise<Vacations> {
-  //  const usersRepository = getCustomRepository(UsersRepositories);
-  //  const vacationRepository = getCustomRepository(VacationRepository);
-//
-  //  const userRole = await usersRepository.findOne({
-  //    where: {
-  //      id
-  //    },
-  //    select: ['role']
-  //  })
-//
-  //  const vacationExist = await vacationRepository.findOne({
-  //    where: {
-  //      id
-  //    }
-  //  })
-//
-  //  if (userRole.role === 'MANAGER') {
-  //    const vacation = await vacationRepository.update({
-  //      id: vacationExist.id
-  //    }, {
-  //      ownerApproval
-  //    })      
-  //  }
-//
-  //  if (userRole.role === 'DP') {
-  //    const vacation = vacationRepository.update({id}, {
-  //      dpApproval
-  //    })
-//
-  //    
-  //  }
-  //}
+  async approveVacations({ id, vacationId }: ApproveVacation): Promise<void> {
+    const usersRepository = getCustomRepository(UsersRepositories);
+    const vacationRepository = getCustomRepository(VacationRepository);
+
+    const userRole = await usersRepository.findOne({
+      where: {
+        id,
+      },
+      select: ['role'],
+    });
+
+    const vacationExists = await vacationRepository.findOne({
+      where: { id: vacationId },
+    });
+
+    console.log(vacationExists);
+
+    if (userRole.role === 'MANAGER') {
+     await vacationRepository.update(
+        {
+          id: vacationExists.id,
+        },
+        {
+          ownerApproval: id,
+        },
+      );
+    }
+
+    if (userRole.role === 'DP') {
+      await vacationRepository.update(
+        {
+          id: vacationExists.id,
+        },
+        {
+          dpApproval: id,
+        },
+      );
+    }
+  }
 }
 
 export { VacationService };
