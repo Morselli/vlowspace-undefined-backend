@@ -1,9 +1,13 @@
 import { getCustomRepository } from 'typeorm';
+import * as tw from 'twilio';
+
 import { Vacations } from '../../../database/entities/Vacations';
-import { EmployeeRepository } from '../employee/employee.repository';
 import { UsersRepositories } from '../user/user.repositoy';
 import { ApproveVacation, RepproveVacation, VacationDto } from './vacation.dto';
 import { VacationRepository } from './vacation.repository';
+
+const accountSid = 'ACc5e6f051baa21d6a8ab1b827782a125d';
+const authToken = '5d3cc61d4b63674180576c5ca6c8d1a2';
 
 class VacationService {
   async createVacation({
@@ -64,7 +68,7 @@ class VacationService {
     });
 
     if (userRole.role === 'MANAGER') {
-     await vacationRepository.update(
+      await vacationRepository.update(
         {
           id: vacationExists.id,
         },
@@ -81,13 +85,27 @@ class VacationService {
         },
         {
           dpApproval: id,
-          status: 'APPROVED'
+          status: 'APPROVED',
         },
       );
+
+      const wppService = new tw.Twilio(accountSid, authToken);
+
+      await wppService.messages
+        .create({
+          body: 'Suas férias foram aprovadas!',
+          from: 'whatsapp:+14155238886',
+          to: 'whatsapp:+5511991836063',
+        })
+        .then();
     }
   }
 
-  async repproveVacations({ id, vacationId, reason }: RepproveVacation): Promise<void> {
+  async repproveVacations({
+    id,
+    vacationId,
+    reason,
+  }: RepproveVacation): Promise<void> {
     const usersRepository = getCustomRepository(UsersRepositories);
     const vacationRepository = getCustomRepository(VacationRepository);
 
@@ -103,15 +121,25 @@ class VacationService {
     });
 
     if (userRole.role === 'MANAGER') {
-     await vacationRepository.update(
+      await vacationRepository.update(
         {
           id: vacationExists.id,
         },
         {
-          reason: reason ? reason : " ",
-          status: 'REPPROVED'
+          reason: reason ? reason : ' ',
+          status: 'REPPROVED',
         },
       );
+
+      const wppService = new tw.Twilio(accountSid, authToken);
+
+      await wppService.messages
+        .create({
+          body: 'Suas férias foram reprovadas!',
+          from: 'whatsapp:+14155238886',
+          to: 'whatsapp:+5511991836063',
+        })
+        .then();
     }
 
     if (userRole.role === 'DP') {
@@ -121,9 +149,18 @@ class VacationService {
         },
         {
           reason,
-          status: 'REPPROVED'
+          status: 'REPPROVED',
         },
       );
+      const wppService = new tw.Twilio(accountSid, authToken);
+
+      await wppService.messages
+        .create({
+          body: 'Suas férias foram reprovadas!',
+          from: 'whatsapp:+14155238886',
+          to: 'whatsapp:+5511991836063',
+        })
+        .then();
     }
   }
 }
