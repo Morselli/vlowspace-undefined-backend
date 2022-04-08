@@ -1,6 +1,6 @@
 import { getCustomRepository } from 'typeorm';
 
-import { Employee } from '../../database/entity/Employee';
+import { Employee } from '../../database/entities/Employee';
 import { UsersRepositories } from '../user/user.repositoy';
 import { EmployeeDto } from './employee.dto';
 import { EmployeeRepository } from './employee.repository';
@@ -10,8 +10,8 @@ class EmployeeService {
     email,
     admissionDate,
     emailCorp,
-    fullName,
     userId,
+    fullName,
   }: EmployeeDto): Promise<Employee> {
     const employeeRepository = getCustomRepository(EmployeeRepository);
     const usersRepository = getCustomRepository(UsersRepositories);

@@ -23,7 +23,7 @@
       "uuid": "^8.3.2"
    },
    "scripts": {
-      "start": "ts-node-dev src/index.ts",
+      "start:dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/index.ts",
       "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
       "build": "tsc",
       "clear": "rm -rf dist"

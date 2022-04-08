@@ -2,7 +2,7 @@ import { getCustomRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
 
 import { UsersRepositories } from './user.repositoy';
-import { User } from '../../database/entity/User';
+import { User } from '../../database/entities/User';
 import { IUserDto } from './user.dto';
 
 class UserService {

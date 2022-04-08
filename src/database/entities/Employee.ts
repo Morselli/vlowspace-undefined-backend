@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
+  Entity,
   JoinColumn,
   ManyToOne,
   PrimaryColumn,
@@ -10,27 +11,28 @@ import {
 import { v4 as uuid } from 'uuid';
 import { User } from './User';
 
+@Entity('employee')
 class Employee {
   @PrimaryColumn()
   id: string;
 
-  @Column()
+  @Column({ name: 'user_id' })
   userId: string;
 
-  @JoinColumn({ name: 'userId' })
+  @JoinColumn({ name: 'user_id' })
   @ManyToOne(() => User)
   user_id: User;
 
-  @Column()
+  @Column({ name: 'full_name' })
   fullName: string;
 
   @Column()
   email: string;
 
-  @Column()
+  @Column({ name: 'email_corp' })
   emailCorp: string;
 
-  @Column()
+  @Column({ name: 'admission_date' })
   admissionDate: Date;
 
   @CreateDateColumn({ name: 'created_at' })

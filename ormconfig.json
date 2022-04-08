@@ -7,7 +7,7 @@
   "database": "workspace-backend",
   "logging": true,
   "entities": [
-    "./src/database/entity/*.ts"
+    "./src/database/entities/*.ts"
   ],
   "migrations": [
     "./src/database/migrations/*.ts"
