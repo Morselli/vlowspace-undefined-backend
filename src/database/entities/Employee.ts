@@ -44,6 +44,23 @@ class Employee {
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Date;
 
+  @Column({ name: 'days_off' })
+  daysOff: number
+
+  @Column({ name: 'owner_id' })
+  ownerId: string
+
+  @JoinColumn({ name: 'owner_id' })
+  @ManyToOne(() => User)
+  owner_id: User
+
+  @Column({ name: 'dp_id' })
+  dpId: string
+
+  @JoinColumn({ name: 'dp_id' })
+  @ManyToOne(() => User)
+  dp_id: string
+
   constructor() {
     if (!this.id) {
       this.id = uuid();
