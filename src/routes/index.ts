@@ -3,6 +3,7 @@ import { EmployeeController } from '../api/controllers/employee/employee.control
 import { UserController } from '../api/controllers/user/user.controller';
 import { VacationController } from '../api/controllers/vacations/vacation.controller';
 import { VacationRequestController } from '../api/controllers/vacations_requests/vacation_request.controller';
+import { ensureAuth } from '../api/middlewares/ensureAuth';
 
 const router = Router();
 
