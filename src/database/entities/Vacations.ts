@@ -35,14 +35,14 @@ class Vacations {
 
   @JoinColumn({ name: 'owner_approval' })
   @ManyToOne(() => Employee)
-  owner_approval: Employee
+  owner: Employee
 
   @Column({ name: 'dp_approval' })
   dpApproval: string
 
   @JoinColumn({ name: 'dp_approval' })
   @ManyToOne(() => Employee)
-  dp_approval: Employee
+  dp: Employee
 
   @Column()
   status: string

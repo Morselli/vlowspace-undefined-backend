@@ -15,5 +15,5 @@ router.post('/createUser', ensureAuth, userController.createUser);
 
 router.post('/createEmployee', employeeController.createEmployee);
 
-router.post('/createVacation', vacationController.createVacation);
+router.post('/createVacation/:dpId/:ownerId', vacationController.createVacation);
 export { router };
