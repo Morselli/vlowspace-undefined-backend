@@ -1,6 +1,6 @@
 import { getCustomRepository } from 'typeorm';
 
-import { Employee } from '../../database/entities/Employee';
+import { Employee } from '../../../database/entities/Employee';
 import { UsersRepositories } from '../user/user.repositoy';
 import { EmployeeDto } from './employee.dto';
 import { EmployeeRepository } from './employee.repository';
