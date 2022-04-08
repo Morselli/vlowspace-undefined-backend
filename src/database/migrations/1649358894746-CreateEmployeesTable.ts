@@ -17,6 +17,14 @@ export class CreateEmployeesTable1649358894746 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'owner_id',
+            type: 'varchar',
+          },
+          {
+            name: 'dp_id',
+            type: 'varchar',
+          },
+          {
             name: 'full_name',
             type: 'varchar',
           },
@@ -31,6 +39,10 @@ export class CreateEmployeesTable1649358894746 implements MigrationInterface {
           {
             name: 'admission_date',
             type: 'timestamp',
+          },
+          {
+            name: 'days_off',
+            type: 'numeric'
           },
           {
             name: 'created_at',
@@ -54,6 +66,18 @@ export class CreateEmployeesTable1649358894746 implements MigrationInterface {
             referencedTableName: 'users',
             referencedColumnNames: ['id'],
             columnNames: ['user_id'],
+          },
+          {
+            name: 'FKOwnerEmployee',
+            referencedTableName: 'users',
+            referencedColumnNames: ['id'],
+            columnNames: ['owner_id'],
+          },
+          {
+            name: 'FKDpEmployee',
+            referencedTableName: 'users',
+            referencedColumnNames: ['id'],
+            columnNames: ['dp_id'],
           },
         ],
       }),
