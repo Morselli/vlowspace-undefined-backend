@@ -9,9 +9,8 @@ interface VacationDto {
 }
 
 interface ApproveVacation {
-  id?: string;
-  ownerApproval?: string;
-  dpApproval?: string;
+  vacationId?: string;
+  id?: string; //userId
 }
 
 export { VacationDto, ApproveVacation };

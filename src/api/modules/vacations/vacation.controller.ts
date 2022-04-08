@@ -21,7 +21,7 @@ class VacationController {
         userId: id,
         dateEnd,
         dateStart,
-        requestedDays: diffDays
+        requestedDays: diffDays,
       });
 
       return response.json(vacation);
@@ -33,7 +33,7 @@ class VacationController {
   async listPendingVacations(
     request: Request,
     response: Response,
-    ): Promise<Response> {
+  ): Promise<Response> {
     const vacationService = new VacationService();
     try {
       const vacations = await vacationService.listPendingVacations();
@@ -43,10 +43,7 @@ class VacationController {
     }
   }
 
-  async listVacations(
-    request: Request,
-    response: Response,
-  ): Promise<Response> {
+  async listVacations(request: Request, response: Response): Promise<Response> {
     const vacationService = new VacationService();
     try {
       const vacations = await vacationService.listVacations();
@@ -62,11 +59,16 @@ class VacationController {
     response: Response,
   ): Promise<Response> {
     const vacationService = new VacationService();
-    const { id } = request.user
-    try {
-      const vacation = await vacationService.approveVacations({id});
+    const { id } = request.user;
+    const { vacationId } = request.params;
 
-      return response.json(vacation)
+    try {
+      const vacation = await vacationService.approveVacations({
+        id,
+        vacationId,
+      });
+
+      return response.json(vacation);
     } catch (error) {
       return response.json({ error: error.message });
     }

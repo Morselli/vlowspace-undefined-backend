@@ -10,19 +10,18 @@ import {
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { User } from './User';
-import { Employee } from './Employee';
 
 @Entity('vacations')
 class Vacations {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column({ name: "user_id"})
+  @Column({ name: 'user_id' })
   userId: string;
 
   @JoinColumn({ name: 'user_id' })
-  @ManyToOne(() => Employee)
-  user: Employee;
+  @ManyToOne(() => User)
+  user: User;
 
   @Column({ name: 'date_start' })
   dateStart: Date;
@@ -31,24 +30,24 @@ class Vacations {
   dateEnd: Date;
 
   @Column({ name: 'owner_approval' })
-  ownerApproval: string
+  ownerApproval: string;
 
   @JoinColumn({ name: 'owner_approval' })
-  @ManyToOne(() => Employee)
-  owner: Employee
+  @ManyToOne(() => User)
+  owner: User;
 
   @Column({ name: 'dp_approval' })
-  dpApproval: string
+  dpApproval: string;
 
   @JoinColumn({ name: 'dp_approval' })
-  @ManyToOne(() => Employee)
-  dp: Employee
+  @ManyToOne(() => User)
+  dp: User;
 
   @Column()
-  status: string
+  status: string;
 
   @Column({ name: 'requested_days' })
-  requestedDays: number
+  requestedDays: number;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
