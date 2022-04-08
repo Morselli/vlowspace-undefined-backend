@@ -16,12 +16,9 @@ export async function ensureAuth(
     return response.status(401).end();
   }
   const [, token] = authToken.split(' ');
-  
+
   try {
-    const { sub: id } = verify(
-      token,
-      'efa15263cc615178c864f8449ab67c51',
-      ) as IPayload;
+    const { sub: id } = verify(token, process.env.JWT_SECRET) as IPayload;
 
     request.user = {
       id,

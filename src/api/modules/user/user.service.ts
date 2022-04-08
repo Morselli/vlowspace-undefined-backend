@@ -64,7 +64,7 @@ class UserService {
       throw new Error('User/Password is incorrect');
     }
 
-    const token = sign({}, 'efa15263cc615178c864f8449ab67c51', {
+    const token = sign({}, process.env.JWT_SECRET, {
       subject: user.id,
       expiresIn: '1d',
     });

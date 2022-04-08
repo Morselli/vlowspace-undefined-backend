@@ -89,7 +89,10 @@ class VacationService {
         },
       );
 
-      const wppService = new tw.Twilio(accountSid, authToken);
+      const wppService = new tw.Twilio(
+        process.env.ACCOUNT_SID,
+        process.env.AUTH_TOKEN,
+      );
 
       await wppService.messages
         .create({
@@ -131,7 +134,10 @@ class VacationService {
         },
       );
 
-      const wppService = new tw.Twilio(accountSid, authToken);
+      const wppService = new tw.Twilio(
+        process.env.ACCOUNT_SID,
+        process.env.AUTH_TOKEN,
+      );
 
       await wppService.messages
         .create({
@@ -152,7 +158,10 @@ class VacationService {
           status: 'REPPROVED',
         },
       );
-      const wppService = new tw.Twilio(accountSid, authToken);
+      const wppService = new tw.Twilio(
+        process.env.ACCOUNT_SID,
+        process.env.AUTH_TOKEN,
+      );
 
       await wppService.messages
         .create({
