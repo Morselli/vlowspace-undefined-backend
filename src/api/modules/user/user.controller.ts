@@ -22,13 +22,13 @@ class UserController {
     }
   }
 
-  async authUser(request: Request, response: Response): Promise<Response> {
+  async login(request: Request, response: Response): Promise<Response> {
     const userService = new UserService();
 
     const { email, password } = request.body;
 
     try {
-      const token = await userService.authUser({
+      const token = await userService.login({
         email,
         password,
       });

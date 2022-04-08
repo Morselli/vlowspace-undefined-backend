@@ -13,7 +13,7 @@ export class CreateVacationsTable1649361664052 implements MigrationInterface {
             generationStrategy: 'uuid',
           },
           {
-            name: 'employee_id',
+            name: 'user_id',
             type: 'varchar',
           },
           {
@@ -58,10 +58,10 @@ export class CreateVacationsTable1649361664052 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: 'FKEmployeeIdVacations',
-            referencedTableName: 'employee',
+            name: 'FKUserIdVacations',
+            referencedTableName: 'users',
             referencedColumnNames: ['id'],
-            columnNames: ['employee_id'],
+            columnNames: ['user_id'],
           },
           {
             name: 'FKOwnerIdVacations',

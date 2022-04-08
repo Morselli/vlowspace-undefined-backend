@@ -15,14 +15,13 @@ export async function ensureAuth(
   if (!authToken) {
     return response.status(401).end();
   }
-
   const [, token] = authToken.split(' ');
-
+  
   try {
     const { sub: id } = verify(
       token,
       'efa15263cc615178c864f8449ab67c51',
-    ) as IPayload;
+      ) as IPayload;
 
     request.user = {
       id,

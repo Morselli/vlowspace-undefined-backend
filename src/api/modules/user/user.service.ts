@@ -2,9 +2,10 @@ import { getCustomRepository } from 'typeorm';
 import { compare, hash } from 'bcryptjs';
 
 import { UsersRepositories } from './user.repositoy';
-import { User } from '../../database/entities/User';
+import { User } from '../../../database/entities/User';
 import { IUserDto, IRequest, IResponse } from './user.dto';
 import { sign } from 'jsonwebtoken';
+import { EmployeeRepository } from '../employee/employee.repository';
 
 class UserService {
   async createUser({ email, name, password, role }: IUserDto): Promise<User> {
@@ -35,8 +36,9 @@ class UserService {
     return user;
   }
 
-  async authUser({ email, password }: IRequest) {
+  async login({ email, password }: IRequest) {
     const usersRepository = getCustomRepository(UsersRepositories);
+    const employeeRepository = getCustomRepository(EmployeeRepository);
 
     const user = await usersRepository.findOne(
       {
@@ -50,6 +52,11 @@ class UserService {
     if (!user) {
       throw new Error('User not found');
     }
+
+    const employee = await employeeRepository.findOne({
+      where: { userId: user.id },
+      relations: ['user'],
+    });
 
     const passwordMatch = await compare(password, user.password);
 
@@ -69,6 +76,12 @@ class UserService {
         email: user.email,
         role: user.role,
         id: user.id,
+      },
+      employee: {
+        id: employee.id,
+        emailCorp: employee.emailCorp,
+        ownerId: employee.ownerId,
+        dpId: employee.dpId,
       },
     };
 
