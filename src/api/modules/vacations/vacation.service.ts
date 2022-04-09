@@ -41,6 +41,7 @@ class VacationService {
       where: {
         status: VACATION_STATUS.PENDING,
       },
+      relations: ['owner', 'dp', 'user']
     });
 
     return vacations;
@@ -49,7 +50,7 @@ class VacationService {
   async listVacations(): Promise<Vacations[]> {
     const vacationRepository = getCustomRepository(VacationRepository);
 
-    const vacations = vacationRepository.find();
+    const vacations = vacationRepository.find({ relations: ['owner', 'dp', 'user'] });
 
     return vacations;
   }
@@ -76,6 +77,7 @@ class VacationService {
         },
         {
           ownerApproval: id,
+          status: VACATION_STATUS.APPROVED,
         },
       );
     }
@@ -91,13 +93,13 @@ class VacationService {
         },
       );
 
-      await wppService.messages
-        .create({
-          body: 'Suas férias foram aprovadas!',
-          from: 'whatsapp:+14155238886',
-          to: 'whatsapp:+5511991836063',
-        })
-        .then();
+      // await wppService.messages
+      //   .create({
+      //     body: 'Suas férias foram aprovadas!',
+      //     from: 'whatsapp:+14155238886',
+      //     to: 'whatsapp:+5511991836063',
+      //   })
+      //   .then();
     }
   }
 
@@ -127,17 +129,17 @@ class VacationService {
         },
         {
           reason: reason ? reason : ' ',
-          status: VACATION_STATUS.REPROVED,
+          status: VACATION_STATUS.REJECTED,
         },
       );
 
-      await wppService.messages
-        .create({
-          body: 'Suas férias foram reprovadas!',
-          from: 'whatsapp:+14155238886',
-          to: 'whatsapp:+5511991836063',
-        })
-        .then();
+      // await wppService.messages
+      //   .create({
+      //     body: 'Suas férias foram reprovadas!',
+      //     from: 'whatsapp:+14155238886',
+      //     to: 'whatsapp:+5511991836063',
+      //   })
+      //   .then();
     }
 
     if (userRole.role === USER_ROLE.DP) {
@@ -147,7 +149,7 @@ class VacationService {
         },
         {
           reason,
-          status: VACATION_STATUS.REPROVED,
+          status: VACATION_STATUS.REJECTED,
         },
       );
 

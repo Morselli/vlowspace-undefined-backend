@@ -3,7 +3,7 @@
 export const VACATION_STATUS = {
   APPROVED: 'Aprovado',
   PENDING: 'Pendente',
-  REPROVED: 'Reprovado',
+  REJECTED: 'Rejeitado',
 }
 
 export const USER_ROLE = {
