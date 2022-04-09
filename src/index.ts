@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import express, { Request, Response, NextFunction, response } from 'express';
+import cors from 'cors';
 
 import './database';
 import { router } from './routes';
@@ -9,6 +10,11 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: '*'
+  }),
+);
 app.use('/api/v1', router);
 
 app.use(

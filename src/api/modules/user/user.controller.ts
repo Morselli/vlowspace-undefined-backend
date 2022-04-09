@@ -38,6 +38,20 @@ class UserController {
       return response.json({ error: error.message });
     }
   }
+
+  async get(request: Request, response: Response): Promise<Response> {
+    const userService = new UserService();
+
+    const { id } = request.user;
+
+    try {
+      const user = await userService.getById(id);
+
+      return response.json(user);
+    } catch (error) {
+      return response.json({ error: error.message });
+    }
+  }
 }
 
 export { UserController };

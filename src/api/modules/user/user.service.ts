@@ -3,7 +3,7 @@ import { compare, hash } from 'bcryptjs';
 
 import { UsersRepositories } from './user.repositoy';
 import { User } from '../../../database/entities/User';
-import { IUserDto, IRequest, IResponse } from './user.dto';
+import { IUserDto, IRequest, IResponse, TUser } from './user.dto';
 import { sign } from 'jsonwebtoken';
 import { EmployeeRepository } from '../employee/employee.repository';
 
@@ -86,6 +86,46 @@ class UserService {
     };
 
     return returnToken;
+  }
+
+  async getById(id: string) {
+    const usersRepository = getCustomRepository(UsersRepositories);
+    const employeeRepository = getCustomRepository(EmployeeRepository);
+
+    const user = await usersRepository.findOne(
+      {
+        id,
+      },
+      {
+        select: ['id', 'name', 'email', 'role'],
+      },
+    );
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    const employee = await employeeRepository.findOne({
+      where: { userId: user.id },
+      relations: ['user'],
+    });
+
+    const response: TUser = {
+      user: {
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        id: user.id,
+      },
+      employee: {
+        id: employee.id,
+        emailCorp: employee.emailCorp,
+        ownerId: employee.ownerId,
+        dpId: employee.dpId,
+      },
+    };
+
+    return response;
   }
 }
 

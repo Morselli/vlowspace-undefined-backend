@@ -11,9 +11,11 @@ const employeeController = new EmployeeController();
 const vacationController = new VacationController();
 
 router.post('/login', userController.login);
-router.post('/createUser',  userController.createUser);
+router.post('/createUser', ensureAuth, userController.createUser);
 
-router.post('/createEmployee', employeeController.createEmployee);
+router.get('/user', ensureAuth, userController.get);
+
+router.post('/createEmployee', ensureAuth, employeeController.createEmployee);
 
 router.post('/createVacation', ensureAuth, vacationController.createVacation);
 router.get('/vacation', ensureAuth, vacationController.listPendingVacations);
