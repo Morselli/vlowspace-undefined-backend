@@ -1,9 +1,9 @@
 // module.exports = {}
 
 export const VACATION_STATUS = {
-  APPROVED: 'APPROVED',
-  PENDING: 'PENDING',
-  REPROVED: 'REPROVED',
+  APPROVED: 'Aprovado',
+  PENDING: 'Pendente',
+  REPROVED: 'Reprovado',
 }
 
 export const USER_ROLE = {

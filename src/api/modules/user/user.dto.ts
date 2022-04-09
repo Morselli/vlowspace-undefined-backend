@@ -27,4 +27,6 @@ interface IResponse {
   };
 }
 
-export { IUserDto, IRequest, IResponse };
+type TUser = Omit<IResponse, 'token'>
+
+export { IUserDto, IRequest, IResponse, TUser };
