@@ -3,7 +3,7 @@ import * as tw from 'twilio';
 
 import { Vacations } from '../../../database/entities/Vacations';
 import { UsersRepositories } from '../user/user.repositoy';
-import { ApproveVacation, RepproveVacation, VacationDto } from './vacation.dto';
+import { ApproveVacation, RejectVacation, VacationDto } from './vacation.dto';
 import { VacationRepository } from './vacation.repository';
 import { VACATION_STATUS, USER_ROLE } from '../../../helpers/constants';
 
@@ -103,11 +103,11 @@ class VacationService {
     }
   }
 
-  async repproveVacations({
+  async rejectVacations({
     id,
     vacationId,
     reason,
-  }: RepproveVacation): Promise<void> {
+  }: RejectVacation): Promise<void> {
     const usersRepository = getCustomRepository(UsersRepositories);
     const vacationRepository = getCustomRepository(VacationRepository);
 

@@ -22,6 +22,6 @@ router.get('/vacation', ensureAuth, vacationController.listPendingVacations);
 router.get('/listAllVacations', ensureAuth, vacationController.listVacations);
 
 router.put('/approveVacations/:vacationId', ensureAuth, vacationController.approveVacations);
-router.put('/repproveVacations/:vacationId', ensureAuth, vacationController.repproveVacations);
+router.put('/rejectVacations/:vacationId', ensureAuth, vacationController.rejectVacations);
 
 export { router };

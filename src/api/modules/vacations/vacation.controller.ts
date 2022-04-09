@@ -74,7 +74,7 @@ class VacationController {
     }
   }
 
-  async repproveVacations(
+  async rejectVacations(
     request: Request,
     response: Response,
   ): Promise<Response> {
@@ -85,7 +85,7 @@ class VacationController {
     const { reason } = request.body
 
     try {
-      const vacation = await vacationService.repproveVacations({
+      const vacation = await vacationService.rejectVacations({
         id,
         vacationId,
         reason
