@@ -93,13 +93,13 @@ class VacationService {
         },
       );
 
-      // await wppService.messages
-      //   .create({
-      //     body: 'Suas férias foram aprovadas!',
-      //     from: 'whatsapp:+14155238886',
-      //     to: 'whatsapp:+5511991836063',
-      //   })
-      //   .then();
+      await wppService.messages
+        .create({
+          body: 'Suas férias foram aprovadas!',
+          from: 'whatsapp:+14155238886',
+          to: 'whatsapp:+5511991836063',
+        })
+        .then();
     }
   }
 
@@ -133,13 +133,13 @@ class VacationService {
         },
       );
 
-      // await wppService.messages
-      //   .create({
-      //     body: 'Suas férias foram reprovadas!',
-      //     from: 'whatsapp:+14155238886',
-      //     to: 'whatsapp:+5511991836063',
-      //   })
-      //   .then();
+      await wppService.messages
+        .create({
+          body: 'Suas férias foram reprovadas!',
+          from: 'whatsapp:+14155238886',
+          to: 'whatsapp:+5511991836063',
+        })
+        .then();
     }
 
     if (userRole.role === USER_ROLE.DP) {
