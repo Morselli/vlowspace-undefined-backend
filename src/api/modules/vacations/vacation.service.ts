@@ -6,9 +6,6 @@ import { UsersRepositories } from '../user/user.repositoy';
 import { ApproveVacation, RepproveVacation, VacationDto } from './vacation.dto';
 import { VacationRepository } from './vacation.repository';
 
-const accountSid = 'ACc5e6f051baa21d6a8ab1b827782a125d';
-const authToken = '5d3cc61d4b63674180576c5ca6c8d1a2';
-
 class VacationService {
   async createVacation({
     dateEnd,
