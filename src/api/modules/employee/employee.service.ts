@@ -10,9 +10,6 @@ class EmployeeService {
     email,
     admissionDate,
     emailCorp,
-    userId,
-    fullName,
-    daysOff
   }: EmployeeDto): Promise<Employee> {
     const employeeRepository = getCustomRepository(EmployeeRepository);
     const usersRepository = getCustomRepository(UsersRepositories);

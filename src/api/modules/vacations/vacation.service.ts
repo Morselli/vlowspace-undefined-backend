@@ -5,7 +5,12 @@ import { Vacations } from '../../../database/entities/Vacations';
 import { UsersRepositories } from '../user/user.repositoy';
 import { ApproveVacation, RepproveVacation, VacationDto } from './vacation.dto';
 import { VacationRepository } from './vacation.repository';
+import { VACATION_STATUS, USER_ROLE } from '../../../helpers/constants';
 
+const wppService = new tw.Twilio(
+  process.env.ACCOUNT_SID,
+  process.env.AUTH_TOKEN,
+);
 class VacationService {
   async createVacation({
     dateEnd,
@@ -20,7 +25,7 @@ class VacationService {
       dateEnd,
       dateStart,
       userId,
-      status: 'PENDING',
+      status: VACATION_STATUS.PENDING,
       requestedDays,
     });
 
@@ -34,7 +39,7 @@ class VacationService {
 
     const vacations = vacationRepository.find({
       where: {
-        status: 'PENDING',
+        status: VACATION_STATUS.PENDING,
       },
     });
 
@@ -64,7 +69,7 @@ class VacationService {
       where: { id: vacationId },
     });
 
-    if (userRole.role === 'MANAGER') {
+    if (userRole.role === USER_ROLE.MANAGER) {
       await vacationRepository.update(
         {
           id: vacationExists.id,
@@ -75,20 +80,15 @@ class VacationService {
       );
     }
 
-    if (userRole.role === 'DP') {
+    if (userRole.role === USER_ROLE.DP) {
       await vacationRepository.update(
         {
           id: vacationExists.id,
         },
         {
           dpApproval: id,
-          status: 'APPROVED',
+          status: VACATION_STATUS.APPROVED,
         },
-      );
-
-      const wppService = new tw.Twilio(
-        process.env.ACCOUNT_SID,
-        process.env.AUTH_TOKEN,
       );
 
       await wppService.messages
@@ -120,20 +120,15 @@ class VacationService {
       where: { id: vacationId },
     });
 
-    if (userRole.role === 'MANAGER') {
+    if (userRole.role === USER_ROLE.MANAGER) {
       await vacationRepository.update(
         {
           id: vacationExists.id,
         },
         {
           reason: reason ? reason : ' ',
-          status: 'REPPROVED',
+          status: VACATION_STATUS.REPROVED,
         },
-      );
-
-      const wppService = new tw.Twilio(
-        process.env.ACCOUNT_SID,
-        process.env.AUTH_TOKEN,
       );
 
       await wppService.messages
@@ -145,19 +140,15 @@ class VacationService {
         .then();
     }
 
-    if (userRole.role === 'DP') {
+    if (userRole.role === USER_ROLE.DP) {
       await vacationRepository.update(
         {
           id: vacationExists.id,
         },
         {
           reason,
-          status: 'REPPROVED',
+          status: VACATION_STATUS.REPROVED,
         },
-      );
-      const wppService = new tw.Twilio(
-        process.env.ACCOUNT_SID,
-        process.env.AUTH_TOKEN,
       );
 
       await wppService.messages
