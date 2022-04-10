@@ -77,7 +77,6 @@ class VacationService {
         },
         {
           ownerApproval: id,
-          status: VACATION_STATUS.APPROVED,
         },
       );
     }
